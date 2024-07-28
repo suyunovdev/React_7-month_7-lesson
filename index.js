@@ -1,14 +1,14 @@
 const { createStore } = require("redux");
 
 // Actions
-const ADD_TODO = "ADD_TODO";
-const REMOVE_TODO = "REMOVE_TODO";
-const UPDATE_TODO = "UPDATE_TODO";
+const ADD_USER = "ADD_USER";
+const REMOVE_USER = "REMOVE_USER";
+const UPDATE_USER = "UPDATE_USER";
 
-const addTodo = task => ({ type: ADD_TODO, payload: task });
-const removeTodo = id => ({ type: REMOVE_TODO, payload: id });
-const updateTodo = (id, newTask) => ({
-  type: UPDATE_TODO,
+const Add_user = task => ({ type: ADD_USER, payload: task });
+const Remove_user = id => ({ type: REMOVE_USER, payload: id });
+const Update_user = (id, newTask) => ({
+  type: UPDATE_USER,
   payload: { id, newTask },
 });
 
@@ -17,11 +17,11 @@ let nextId = 1;
 
 const todoReducer = (state = [], action) => {
   switch (action.type) {
-    case ADD_TODO:
+    case ADD_USER:
       return [...state, { id: nextId++, task: action.payload }];
-    case REMOVE_TODO:
+    case REMOVE_USER:
       return state.filter(todo => todo.id !== action.payload);
-    case UPDATE_TODO:
+    case UPDATE_USER:
       return state.map(todo =>
         todo.id === action.payload.id
           ? { ...todo, task: action.payload.newTask }
@@ -42,7 +42,7 @@ const displayTodos = () => {
 store.subscribe(displayTodos);
 
 // Dispatching actions
-store.dispatch(addTodo("Learn Redux"));
-store.dispatch(addTodo("Learn React"));
-store.dispatch(updateTodo(1, "Master Redux"));
-store.dispatch(removeTodo(2));
+store.dispatch(Add_user("SUYUNOV ILYOS"));
+store.dispatch(Add_user("RAXMATOV MIRMANSUR"));
+store.dispatch(Update_user(1, "SHOMURODOV MUHAMMAD AMIN"));
+store.dispatch(Remove_user(2));
